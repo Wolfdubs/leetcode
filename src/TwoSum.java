@@ -1,7 +1,6 @@
 //Given an array of integers and a target, return the 2 indices that sum to the target.
 //Cannot use same element twice.
 //Assume there is always 1 solution
-import utils.UsefulMethods;
 
 import java.util.Arrays;
 import java.util.HashMap;

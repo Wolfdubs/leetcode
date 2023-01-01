@@ -9,6 +9,7 @@ public class UsefulMethods {
         Random random = new Random();
         for (int i =0; i<myArray.length; i++){
             myArray[i] = random.nextInt(0,100);
+           // myArray[i] = (int) (Math.random() *10);
         }
         return myArray;
     }

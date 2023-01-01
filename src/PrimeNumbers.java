@@ -13,7 +13,9 @@ public class PrimeNumbers {
         for (int i : firstNPrimeNumbers){
             System.out.print(i + ", ");
         }
-
+        System.out.println();
+        List<Integer> primeNumbersBetweenRange = findPrimesBetweenRange(1,1000);
+        primeNumbersBetweenRange.forEach(i -> System.out.print(i + ", "));
     }
 
     private static List<Integer> primeNumbers(int n){
@@ -53,5 +55,24 @@ public class PrimeNumbers {
             numberToCheck++;  //increments the number to check if i is prime, with every while loop
         }
         return primeList;
+    }
+
+    private static List<Integer> findPrimesBetweenRange(int start, int end){
+        List<Integer> primeNumbers = new ArrayList<>();
+        for (int i = start; i <=end; i++){
+            boolean isPrime = false;
+            for (int factor = 2; factor<=Math.sqrt(i); factor++){
+                if (i % factor != 0 ){
+                    isPrime = true;
+                } else {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primeNumbers.add(i);
+            }
+        }
+        return primeNumbers;
     }
 }
