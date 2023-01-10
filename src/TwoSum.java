@@ -3,13 +3,14 @@
 //Assume there is always 1 solution
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class TwoSum {
     public static void main(String[] args) {
         int[] myArray = {5,8,2,4,1,0,6,9,5,3,8};
         Arrays.stream(myArray).forEach(i -> System.out.print(i + ", "));
-        int[] answer = twoSumMapping(myArray, 11);
+        int[] answer = twoSumComplimentsHashMap(myArray, 11);
         System.out.println("\nAnswer: ");
         Arrays.stream(answer).forEach(i -> System.out.print(i + ", "));
 
@@ -23,17 +24,36 @@ public class TwoSum {
     // HashMap lookup is constant time due to hashing mechanism
     // -> Means as you loop through the array, for each number, you can check if you've already seen its required compliment by checking the HashMap
 
-    public static int[] twoSumMapping(int[] inputArray, int target) {
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
+    public static int[] twoSumComplimentsHashMap(int[] inputArray, int target) {
+        HashMap<Integer, Integer> complimentsMap = new HashMap<>();
         for (int i =0; i<inputArray.length; i++) {       //loop through the array
-            int compliment = target - inputArray[i];    //each time, calculate the compliment required for the current value to reach the target
-            if (hashMap.containsKey(compliment)){       //if the hashmap contains that compliment required (ie as already seen it)
-                int complimentIndex = hashMap.get(compliment);   //get the index that that compliment value is at in the input array
+            int complimentValue = target - inputArray[i];    //each time, calculate the compliment required for the current value to reach the target
+            if (complimentsMap.containsKey(complimentValue)){       //if the hashmap contains that compliment required (ie as already seen it)
+                int complimentIndex = complimentsMap.get(complimentValue);   //get the index that that compliment value is at in the input array
                 return new int[]{i, complimentIndex};        //return the current looping index, and the index with the required compliment value
             } else {
-                hashMap.put(inputArray[i], i);    //else, add the current value and its index into the hashmap (so it can be checked for as a compliment for later loops
+                complimentsMap.put(inputArray[i], i);    //else, add the current value and its index into the hashmap (so it can be checked for as a compliment for later loops
             }
         } return inputArray;
+    }
+
+    //walk low and high pointers up and down the sorted array. if their sum exceeds target, lower the higher ointer and vice versa, until they meet or find target
+    public static int[] twoSumSortingAndPointers(int[] inputArray, int target) {
+        Arrays.sort(inputArray);
+        int lowIndex = 0;
+        int highIndex = inputArray.length -1;
+        while (lowIndex < highIndex) {
+            if (inputArray[lowIndex] + inputArray[highIndex] == target) {
+                return new int[]{lowIndex, highIndex};
+            } else if (inputArray[lowIndex] + inputArray[highIndex] < target ) {
+                lowIndex++;
+            } else if (inputArray[lowIndex] + inputArray[highIndex] > target) {
+                highIndex--;
+            }
+        }
+        System.out.println("Target not found");
+        return new int[]{Integer.parseInt(null)};
+
     }
 
     //for each number, store its compliment as the HashMap key, and store that numbers index as the value

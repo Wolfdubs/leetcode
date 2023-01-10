@@ -13,4 +13,24 @@ public class UsefulMethods {
         }
         return myArray;
     }
+
+    public static int[] generateRandomArray(int size, int bound){
+        int[] myArray = new int[size];
+        Random random = new Random();
+        for (int i =0; i<myArray.length; i++){
+            myArray[i] = random.nextInt(0,bound+1);
+            // myArray[i] = (int) (Math.random() *10);
+        }
+        return myArray;
+    }
+
+    public static int[] generateRandomArrayWithNegatives(int size, int bound){
+        int[] myArray = new int[size];
+        Random random = new Random();
+        for (int i =0; i<myArray.length; i++){
+            myArray[i] = (random.nextInt(0,bound+1) - bound/2);
+            // myArray[i] = (int) (Math.random() *10);
+        }
+        return myArray;
+    }
 }
