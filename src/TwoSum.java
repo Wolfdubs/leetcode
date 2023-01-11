@@ -43,11 +43,12 @@ public class TwoSum {
         int lowIndex = 0;
         int highIndex = inputArray.length -1;
         while (lowIndex < highIndex) {
-            if (inputArray[lowIndex] + inputArray[highIndex] == target) {
+            int sum = inputArray[lowIndex] + inputArray[highIndex];
+            if (sum == target) {
                 return new int[]{lowIndex, highIndex};
-            } else if (inputArray[lowIndex] + inputArray[highIndex] < target ) {
+            } else if (sum < target ) {
                 lowIndex++;
-            } else if (inputArray[lowIndex] + inputArray[highIndex] > target) {
+            } else {
                 highIndex--;
             }
         }

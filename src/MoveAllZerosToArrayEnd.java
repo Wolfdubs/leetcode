@@ -29,18 +29,14 @@ public class MoveAllZerosToArrayEnd {
         //each time encounter a non-zero, increment j, and place that element before the pivot
         for (int i = 0; i < array.length; i++) {
             if (array[i] != 0) {   //pivot is 0
-                swap(array, i, j);
+                utils.UsefulMethods.swap(array, i, j);
                 j++;
             }
         }
         System.out.println(Arrays.toString(array));
     }
 
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
+
 
 
 }
